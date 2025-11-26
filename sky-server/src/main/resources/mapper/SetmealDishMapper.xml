@@ -9,4 +9,12 @@
             #{dishId}
         </foreach>
     </select>
+    <insert id="insertBatch" parameterType="list">
+        insert into setmeal_dish(setmeal_id,dish_id, name, price, copies)
+        VALUES
+            <foreach collection="setmealDishes" item="st" separator=",">
+                (#{st.setmealId},#{st.dishId},#{st.name},#{st.price},#{st.copies})
+            </foreach>
+    </insert>
+
 </mapper>

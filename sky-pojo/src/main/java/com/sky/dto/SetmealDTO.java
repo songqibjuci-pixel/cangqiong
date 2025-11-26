@@ -1,5 +1,6 @@
 package com.sky.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sky.entity.SetmealDish;
 import lombok.Data;
 import java.io.Serializable;
@@ -13,6 +14,7 @@ public class SetmealDTO implements Serializable {
     private Long id;
 
     //分类id
+
     private Long categoryId;
 
     //套餐名称
