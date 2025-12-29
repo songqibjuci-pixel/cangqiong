@@ -22,5 +22,26 @@
         values
         (#{categoryId},#{name},#{price},#{status},#{description},#{image},#{createTime},#{updateTime},#{createUser},#{updateUser})
     </insert>
+    <select id="pageQuery" resultType="com.sky.vo.SetmealVO">
+        select * from setmeal
+        <where>
+            <if test ="name != null">
+                and setmeal.name like concat('%', #{name}, '%')
+            </if>
+            <if test="categoryId != null">
+                and setmeal.category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                and setmeal.status = #{status}
+            </if>
+        </where>
+        order by setmeal.create_time desc
+    </select>
+    <delete id="deleteBatchBySetmealIds">
+        delete from setmeal where id in
+            <foreach collection="ids" open="(" close=")" separator="," item="id">
+                #{id}
+            </foreach>
+    </delete>
 
 </mapper>
