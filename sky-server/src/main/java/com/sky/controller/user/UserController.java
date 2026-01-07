@@ -5,6 +5,7 @@ import com.sky.dto.UserLoginDTO;
 import com.sky.entity.User;
 import com.sky.properties.JwtProperties;
 import com.sky.result.Result;
+import com.sky.service.UserService;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.UserLoginVO;
 import io.swagger.annotations.Api;
@@ -48,7 +49,7 @@ public class UserController {
 
         //为微信用户生成jwt令牌
         HashMap<String, Object> claims = new HashMap<>();
-        claims.put(JwtClaimsConstant.User_ID, user.getId());
+        claims.put(JwtClaimsConstant.USER_ID, user.getId());
         String token = JwtUtil.createJWT(jwtProperties.getUserSecretKey(), jwtProperties.getUserTtl(), claims);
         UserLoginVO userLoginVO = UserLoginVO.builder()
                 .id(user.getId())
